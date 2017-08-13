@@ -18,11 +18,6 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-/**
- * WheelView滚轮
- *
- * @author JiangPing
- */
 public class WheelView extends View {
     /**
      * 控件宽度
@@ -141,78 +136,6 @@ public class WheelView extends View {
     public WheelView(Context context) {
         super(context);
         initData();
-    }
-
-    public int getLineColor() {
-        return lineColor;
-    }
-
-    public void setLineColor(int lineColor) {
-        this.lineColor = lineColor;
-    }
-
-    public float getLineHeight() {
-        return lineHeight;
-    }
-
-    public void setLineHeight(float lineHeight) {
-        this.lineHeight = lineHeight;
-    }
-
-    public float getNormalFont() {
-        return normalFont;
-    }
-
-    public void setNormalFont(float normalFont) {
-        this.normalFont = normalFont;
-    }
-
-    public float getSelectedFont() {
-        return selectedFont;
-    }
-
-    public void setSelectedFont(float selectedFont) {
-        this.selectedFont = selectedFont;
-    }
-
-    public int getUnitHeight() {
-        return unitHeight;
-    }
-
-    public void setUnitHeight(int unitHeight) {
-        this.unitHeight = unitHeight;
-    }
-
-    public int getItemNumber() {
-        return itemNumber;
-    }
-
-    public void setItemNumber(int itemNumber) {
-        this.itemNumber = itemNumber;
-    }
-
-    public int getNormalColor() {
-        return normalColor;
-    }
-
-    public void setNormalColor(int normalColor) {
-        this.normalColor = normalColor;
-    }
-
-    public int getSelectedColor() {
-        return selectedColor;
-    }
-
-    public void setSelectedColor(int selectedColor) {
-        this.selectedColor = selectedColor;
-    }
-
-    public float getMaskHeight() {
-        return maskHeight;
-    }
-
-    public void setMaskHeight(float maskHeight) {
-        this.maskHeight = maskHeight;
     }
 
     /**
@@ -569,9 +492,6 @@ public class WheelView extends View {
         initData();
     }
 
-    public ArrayList<String> getData(){
-        return dataList;
-    }
     /**
      * 重置数据
      *
@@ -715,19 +635,19 @@ public class WheelView extends View {
         /**
          * 内容
          */
-        private String itemText = "";
+        public String itemText = "";
         /**
          * x坐标
          */
-        private int x = 0;
+        public int x = 0;
         /**
          * y坐标
          */
-        private int y = 0;
+        public int y = 0;
         /**
          * 移动距离
          */
-        private int move = 0;
+        public int move = 0;
         /**
          * 字体画笔
          */
@@ -737,7 +657,7 @@ public class WheelView extends View {
          */
         private Rect textRect;
 
-        private ItemObject() {
+        public ItemObject() {
             super();
         }
 
@@ -747,7 +667,7 @@ public class WheelView extends View {
          * @param canvas         画板
          * @param containerWidth 容器宽度
          */
-        private void drawSelf(Canvas canvas, int containerWidth) {
+        public void drawSelf(Canvas canvas, int containerWidth) {
 
             if (textPaint == null) {
                 textPaint = new TextPaint();
@@ -790,8 +710,10 @@ public class WheelView extends View {
          *
          * @return
          */
-        private boolean isInView() {
-            return (y + move > controlHeight || (y + move + unitHeight / 2 + textRect.height() / 2) < 0);
+        public boolean isInView() {
+            if (y + move > controlHeight || (y + move + unitHeight / 2 + textRect.height() / 2) < 0)
+                return false;
+            return true;
         }
 
         /**
@@ -799,7 +721,7 @@ public class WheelView extends View {
          *
          * @param _move
          */
-        private void move(int _move) {
+        public void move(int _move) {
             this.move = _move;
         }
 
@@ -808,7 +730,7 @@ public class WheelView extends View {
          *
          * @param _move
          */
-        private void newY(int _move) {
+        public void newY(int _move) {
             this.move = 0;
             this.y = y + _move;
         }
@@ -818,7 +740,7 @@ public class WheelView extends View {
          *
          * @return
          */
-        private boolean isSelected() {
+        public boolean isSelected() {
             if ((y + move) >= controlHeight / 2 - unitHeight / 2 + lineHeight
                     && (y + move) <= controlHeight / 2 + unitHeight / 2 - lineHeight) {
                 return true;
@@ -837,7 +759,7 @@ public class WheelView extends View {
         /**
          * 获取移动到标准位置需要的距离
          */
-        private float moveToSelected() {
+        public float moveToSelected() {
             return (controlHeight / 2 - unitHeight / 2) - (y + move);
         }
     }

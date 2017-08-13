@@ -87,8 +87,8 @@ public class DateSelectDialog extends AlertDialog {
     }
 
     public interface OnDateSelectedListener{
-        void onSelected(int startYear,int startMonth,int startDay,
-                         int endYear,int endMonth,int endDay);
+        void onSelected(int startYear, int startMonth, int startDay,
+                        int endYear, int endMonth, int endDay);
         void onSelectedAll();
     }
 
